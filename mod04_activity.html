@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+  <script>
+
+  $(document).ready(function(){
+    // Erase the html form
+    $("#input0").val("");
+    $("#input1").val("");
+    $("#input2").val("");
+    // The sorting function
+    // This function sorts three numberic values with a numeric sort, otherwise a string sort is applied
+    $("#goButton").click(function(){
+      // initialize array
+      var myArray = ["", "", ""];
+      // get values from the page form
+      myArray[0] = $("#input0").val();
+      myArray[1] = $("#input1").val();
+      myArray[2] = $("#input2").val();
+      // write output to the console
+      console.log("-----------------------------------");
+      console.log("You entered: " + myArray);
+      // choose which kind of sort to use
+      if((typeof myArray[0] === 'number') && (typeof myArray[1] === 'number') && (typeof myArray[2] === 'number')) {
+        // numeric sort
+        myArray.sort(function(first, second){return (first - second)});
+      } else {
+        // string sort
+        myArray.sort();
+      }
+      // write output to the console
+      console.log("Sort Result: " + myArray);
+      // remind the user to find output in the console
+      $("#outputDisplay").html("<p>(Please see the JavaScript console for output...)</p>");
+      // wait 4 seconds before resetting the page form
+      setTimeout(myReset, 4000);
+    });
+
+    // resets the page form to empty, ready for the user to run it again
+    function myReset() {
+      $("#outputDisplay").html("");
+      $("#input0").val("");
+      $("#input1").val("");
+      $("#input2").val("");
+    }
+});
+
+  </script>
+</head>
+<body>
+  <p>Please enter three numbers or strings:
+    <p><input type="text" id="input0"></p>
+    <p><input type="text" id="input1"></p>
+    <p><input type="text" id="input2"></p>
+  <p><button type="button" id="goButton">Sort</button>
+  <div id="outputDisplay">
+  </div>
+</body>
+</html>
