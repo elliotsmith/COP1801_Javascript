@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+    #outputDisplay  {
+    position: relative;
+    width: 200px;
+    height: 325px;
+    top: 100px;
+    left: 100px;
+    border: 3px solid #73ADF1;
+    }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+  <script>
+      // this script allows the user to move a box around the screen
+    $(document).ready(function(){
+    $("#goButton").click(function(){
+    // get values entered by user into the html form
+    udirection = $("#userDirection").val();
+    udistance = parseInt($("#userDistance").val());
+    // convert the direction value to lower case for compatiblity with the following code
+    udirection = udirection.toLowerCase();
+    // constrain the distance between upper and lower boundaries
+    // if boundaries are exceeded, change the value to be within the boundaries
+    feedbackVar2 = "Moving for " + udistance + " pixels...";
+    if (!(udistance > 4)) {
+      feedbackVar2 = udistance + " isn't enough.  Let's move for at least 5 pixels...";
+      udistance = 5;
+    }
+    if (udistance > 75) {
+      feedbackVar2 = udistance + " is too much.  Let's only move for 75 pixels...";
+      udistance = 75;
+    }
+    // set the mydirection string to be positive or negative
+    // as appropriate for the direction of travel requested by the user
+    feedbackVar1 = "I'm moving " + udirection + "...";
+    if ((udirection.includes("right")) || (udirection.includes("down"))) {
+      mydirection = "+=";
+    } else if ((udirection.includes("up")) || (udirection.includes("left"))) {
+      mydirection = "-=";
+    } else { // if user did not enter a valid direction, default to the direction of "right"
+      feedbackVar1 = "I don't understand " + udirection + " so I'm moving right instead...";
+      udirection ="right";
+      mydirection = "+=";
+    }
+    // set the mymove string to the correct distance
+    mymove = mydirection + udistance + "px";
+    // provide feedback to the user
+    $("#feedback").html("<p>" + feedbackVar1 + "</p><p>" + feedbackVar2);
+    setTimeout(function(){
+      $("#feedback").html("");
+    }, udistance*40);
+    // perform the move of the #outputDisplay div element in the html form
+    if ((udirection.includes("right")) || (udirection.includes("left"))) {
+          $("#outputDisplay").animate({left: mymove}, ((udistance*40)));
+    }
+    if ((udirection.includes("up")) || (udirection.includes("down"))) {
+          $("#outputDisplay").animate({top: mymove}, ((udistance*40)));
+    }
+    });
+    });
+  </script>
+</head>
+<body>
+  <div id="outputDisplay" >
+    <div style = "margin: auto; width: 90%;">
+    <p>Please input a direction and distance to travel:
+    <p>Direction: <input type="text" size="10" id="userDirection">
+    <p>Distance: <input type="text" size="5" id="userDistance">
+    <p><button type="button" id="goButton" style="width:175px; height:50px;">Go</button>
+    <div id="feedback" >
+    </div>
+  </div>
+</div>
+</body>
+</html>
