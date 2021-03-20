@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+  <script>
+
+  $(document).ready(function(){
+    // Erase the html form
+    $("#fname").val("");
+    $("#lname").val("");
+    $("#address").val("");
+    $("#city").val("");
+    $("#state").val("");
+    // This function retrieves values from the web form's input fields
+    $("#goButton").click(function(){
+
+      // write output to the console
+      console.log("-----------------------------------");
+      // write output to the console
+      console.log("Values retrieved from the web form's input fields: ");
+      console.log("fname: " + $("#fname").val());
+      console.log("lname: " + $("#lname").val());
+      console.log("address: " + $("#address").val());
+      console.log("city: " + $("#city").val());
+      console.log("state: " + $("#state").val());
+
+      // remind the user to find output in the console
+      $("#outputDisplay").html("<p>(Please see the JavaScript console for output...)</p>");
+    });
+
+});
+
+  </script>
+</head>
+<body>
+  <p>Please complete and submit the form:
+    <p>First name: <input type="text" id="fname"></p>
+    <p>Last name: <input type="text" id="lname"></p>
+    <p>Street address: <input type="text" id="address"></p>
+    <p>City: <input type="text" id="city"></p>
+    <p>State: <input type="text" id="state"></p>
+  <p><button type="button" id="goButton">Submit</button>
+  <div id="outputDisplay">
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  table, th, td {
+    border: 1px solid black;
+  }
+
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+
+  <script>
+
+  $(document).ready(function(){
+    // Erase the html form
+    $("#fname").val("");
+    $("#lname").val("");
+    $("#address").val("");
+    $("#city").val("");
+    $("#state").val("");
+    // This function retrieves values from the web form's input fields and outputs the values into an HTML table
+    $("#goButton").click(function(){
+
+      fname = $("#fname").val();
+      lname = $("#lname").val();
+      address = $("#address").val();
+      city = $("#city").val();
+      state = $("#state").val();
+
+      // create table for output display
+      $("#outputDisplay").html("<p>These values were retrieved from the above form's input fields:...</p>");
+
+      mytable = "";
+      mytable = mytable + "<table><tr> <th>First Name</th> <th>Last Name</th> <th>Street Address</th> <th>City</th> <th>State</th></tr>";
+      mytable = mytable + "<tr> <td>" + fname + "</td> <td>" + lname + "</td> <td>" + address + "</td> <td>" + city + "</td> <td>" + state + "</td></tr>";
+      mytable = mytable + "</table>";
+      $("#outputDisplay").append(mytable);
+    });
+
+});
+
+  </script>
+</head>
+<body>
+  <p>Please complete and submit the form:
+    <p>First name: <input type="text" id="fname"></p>
+    <p>Last name: <input type="text" id="lname"></p>
+    <p>Street address: <input type="text" id="address"></p>
+    <p>City: <input type="text" id="city"></p>
+    <p>State: <input type="text" id="state"></p>
+  <p><button type="button" id="goButton">Submit</button>
+  <div id="outputDisplay">
+  </div>
+</body>
+</html>
